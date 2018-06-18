@@ -2674,6 +2674,10 @@ class CpplintTest(CpplintTestBase):
     # Avoid false positives with operator[]
     self.TestLint('table_to_children[&*table].push_back(dependent);', '')
 
+  def testStructuredBinding(self):
+    self.TestLint('auto [a, b] = pair;', '')
+    self.TestLint('auto& [a, b] = pair;', '')
+
   def testBraceInitializerList(self):
     self.TestLint('MyStruct p = {1, 2};', '')
     self.TestLint('MyStruct p{1, 2};', '')
